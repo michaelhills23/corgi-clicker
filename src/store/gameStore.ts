@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { GameState, UpgradeState } from "@/types/game";
+import { calculateLevel } from "@/utils/progression";
 
 // Schema version for migrations
 const CURRENT_SCHEMA_VERSION = 1;
@@ -111,13 +112,16 @@ export const useGameStore = create<GameStore>()(
         set((state) => {
           const earned = state.clickValue * state.prestigeMultiplier;
           const newHighest = Math.max(state.highestClickValue, earned);
+          const newTotalEarned = state.totalEarned + earned;
+          const newLevel = calculateLevel(newTotalEarned);
           // 0.001 liters per click (adjustable for fun)
           const gasProduced = 0.001;
 
           return {
             currency: state.currency + earned,
-            totalEarned: state.totalEarned + earned,
+            totalEarned: newTotalEarned,
             totalClicks: state.totalClicks + 1,
+            level: newLevel,
             highestClickValue: newHighest,
             totalGasLiters: state.totalGasLiters + gasProduced,
             lastSaved: Date.now(),

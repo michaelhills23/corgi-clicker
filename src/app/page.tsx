@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { GameLayout } from "@/components/layout/GameLayout";
 import { CurrencyDisplay } from "@/components/game/CurrencyDisplay";
 import { Corgi } from "@/components/game/Corgi";
+import { LevelDisplay } from "@/components/game/LevelDisplay";
+import { PrestigeButton } from "@/components/game/PrestigeButton";
 import { useGameStore } from "@/store/gameStore";
 
 export default function Home() {
@@ -59,6 +61,17 @@ export default function Home() {
             👆 Tap the corgi!
           </motion.p>
         )}
+
+        {/* Level and Prestige section */}
+        <motion.div
+          className="w-full max-w-xs mt-8 space-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <LevelDisplay />
+          <PrestigeButton />
+        </motion.div>
       </div>
     </GameLayout>
   );
