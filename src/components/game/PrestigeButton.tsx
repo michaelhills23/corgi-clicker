@@ -5,9 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGameStore } from "@/store/gameStore";
 import { canPrestige, getPrestigeMultiplier } from "@/utils/progression";
 import { useSounds } from "@/hooks/useSounds";
+import { PrestigeAnimation } from "./PrestigeAnimation";
 
 export function PrestigeButton() {
   const [showModal, setShowModal] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(false);
   const level = useGameStore((state) => state.level);
   const prestigeLevel = useGameStore((state) => state.prestigeLevel);
   const prestige = useGameStore((state) => state.prestige);
@@ -18,9 +20,14 @@ export function PrestigeButton() {
   const currentMultiplier = getPrestigeMultiplier(prestigeLevel);
 
   const handlePrestige = () => {
-    prestige();
-    playPrestige();
     setShowModal(false);
+    setShowAnimation(true);
+    playPrestige();
+  };
+
+  const handleAnimationComplete = () => {
+    prestige();
+    setShowAnimation(false);
   };
 
   if (!isReady && prestigeLevel === 0) {
@@ -65,6 +72,13 @@ export function PrestigeButton() {
           </div>
         )}
       </motion.button>
+
+      {/* Prestige animation */}
+      <PrestigeAnimation
+        isPlaying={showAnimation}
+        onComplete={handleAnimationComplete}
+        newMultiplier={nextMultiplier}
+      />
 
       {/* Prestige confirmation modal */}
       <AnimatePresence>

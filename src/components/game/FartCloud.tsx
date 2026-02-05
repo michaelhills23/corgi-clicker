@@ -13,11 +13,11 @@ interface FartCloudProps {
 export function FartCloud({ id, x, y, onComplete }: FartCloudProps) {
   // Random variations for organic feel
   const [variants] = useState(() => ({
-    driftX: (Math.random() - 0.5) * 100,
-    driftY: -50 - Math.random() * 50,
-    rotation: (Math.random() - 0.5) * 30,
-    scale: 0.8 + Math.random() * 0.4,
-    duration: 1 + Math.random() * 0.5,
+    driftX: 60 + Math.random() * 100, // Drift to the right (away from butt)
+    driftY: -20 - Math.random() * 30,
+    rotation: (Math.random() - 0.5) * 40,
+    scale: 2.5 + Math.random() * 1.5, // Much bigger clouds (2.5x to 4x)
+    duration: 1.5 + Math.random() * 0.5,
   }));
 
   useEffect(() => {
@@ -51,38 +51,40 @@ export function FartCloud({ id, x, y, onComplete }: FartCloudProps) {
       }}
     >
       <svg
-        width="60"
-        height="40"
-        viewBox="0 0 60 40"
+        width="120"
+        height="90"
+        viewBox="0 0 120 90"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Cloud shape */}
-        <ellipse cx="30" cy="22" rx="25" ry="15" fill="#A8E6CF" opacity="0.7" />
-        <ellipse cx="18" cy="18" rx="12" ry="10" fill="#88D8B0" opacity="0.6" />
-        <ellipse cx="42" cy="20" rx="10" ry="8" fill="#A8E6CF" opacity="0.5" />
-        <ellipse cx="25" cy="12" rx="8" ry="6" fill="#88D8B0" opacity="0.4" />
-        {/* Stink lines */}
+        {/* Cloud shape - big, puffy, and GREEN */}
+        <ellipse cx="60" cy="50" rx="50" ry="32" fill="#7CB342" opacity="0.85" />
+        <ellipse cx="35" cy="45" rx="28" ry="22" fill="#8BC34A" opacity="0.8" />
+        <ellipse cx="85" cy="48" rx="24" ry="20" fill="#9CCC65" opacity="0.75" />
+        <ellipse cx="50" cy="30" rx="20" ry="16" fill="#8BC34A" opacity="0.7" />
+        <ellipse cx="75" cy="32" rx="16" ry="14" fill="#AED581" opacity="0.7" />
+        <ellipse cx="45" cy="60" rx="18" ry="14" fill="#7CB342" opacity="0.6" />
+        {/* Stink lines - prominent */}
         <path
-          d="M15 8 Q13 5, 15 2"
-          stroke="#88D8B0"
-          strokeWidth="2"
+          d="M30 22 Q26 14, 30 6"
+          stroke="#558B2F"
+          strokeWidth="4"
           fill="none"
-          opacity="0.5"
+          opacity="0.8"
         />
         <path
-          d="M30 6 Q28 3, 30 0"
-          stroke="#88D8B0"
-          strokeWidth="2"
+          d="M60 18 Q56 10, 60 2"
+          stroke="#558B2F"
+          strokeWidth="4"
           fill="none"
-          opacity="0.5"
+          opacity="0.8"
         />
         <path
-          d="M45 8 Q47 5, 45 2"
-          stroke="#88D8B0"
-          strokeWidth="2"
+          d="M90 22 Q94 14, 90 6"
+          stroke="#558B2F"
+          strokeWidth="4"
           fill="none"
-          opacity="0.5"
+          opacity="0.8"
         />
       </svg>
     </motion.div>

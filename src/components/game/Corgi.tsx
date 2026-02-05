@@ -1,11 +1,13 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useGameStore } from "@/store/gameStore";
 import { FartCloudManager } from "./FartCloud";
 import { CoinParticleManager } from "./CoinParticle";
 import { useSounds } from "@/hooks/useSounds";
+import { useScreenShake } from "@/hooks/useScreenShake";
 import type { CurrencyType } from "@/types/game";
 
 // Get currency type based on total earned
@@ -38,6 +40,7 @@ export function Corgi() {
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
   const { playFart, playCoin } = useSounds();
+  const { shake, triggerShake } = useScreenShake();
 
   const click = useGameStore((state) => state.click);
   const clickValue = useGameStore((state) => state.clickValue);
@@ -65,14 +68,14 @@ export function Corgi() {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        // Spawn fart cloud at corgi's rear (offset to the left)
+        // Spawn fart cloud at corgi's butt (right side since corgi faces left)
         const fartId = `fart-${Date.now()}-${Math.random()}`;
         setFartClouds((clouds) => [
           ...clouds,
           {
             id: fartId,
-            x: centerX - 60,
-            y: centerY + 20,
+            x: centerX + 60,
+            y: centerY + 10,
           },
         ]);
 
@@ -102,8 +105,14 @@ export function Corgi() {
           ease: "easeOut",
         },
       });
+
+      // Screen shake for big clicks (value > 10)
+      if (earnedValue >= 10) {
+        const intensity = Math.min(earnedValue / 5, 15); // Cap at 15
+        triggerShake(intensity, 150);
+      }
     },
-    [click, controls, currencyType, earnedValue, playFart, playCoin]
+    [click, controls, currencyType, earnedValue, playFart, playCoin, triggerShake]
   );
 
   const handleFartComplete = useCallback((id: string) => {
@@ -118,6 +127,9 @@ export function Corgi() {
     <div
       ref={containerRef}
       className="relative flex flex-col items-center select-none"
+      style={{
+        transform: shake.isShaking ? `translate(${shake.x}px, ${shake.y}px)` : undefined,
+      }}
     >
       {/* Particle effects container */}
       <div className="absolute inset-0 overflow-visible pointer-events-none">
@@ -161,7 +173,14 @@ export function Corgi() {
             ease: "easeInOut",
           }}
         >
-          <span className="text-7xl sm:text-8xl">🐕</span>
+          <Image
+            src="/corgis/sir-fluffington.png"
+            alt={corgiName}
+            width={200}
+            height={200}
+            className="w-40 h-40 sm:w-52 sm:h-52 object-contain pointer-events-none"
+            priority
+          />
         </motion.div>
 
         {/* Click value indicator (shows on hover) */}
