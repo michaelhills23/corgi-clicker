@@ -1,101 +1,44 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="min-h-screen bg-bg-primary flex flex-col items-center justify-center p-4">
+      <h1 className="font-display text-4xl sm:text-5xl text-brand-primary mb-4 text-center">
+        Corgi Clicker
+      </h1>
+      <p className="font-body text-text-secondary text-lg mb-8 text-center">
+        Click the corgi. You know you want to.
+      </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Placeholder corgi area */}
+      <div className="w-48 h-48 sm:w-64 sm:h-64 bg-bg-secondary rounded-full flex items-center justify-center shadow-lg hover:shadow-orange transition-shadow cursor-pointer animate-breathe">
+        <span className="text-6xl">🐕</span>
+      </div>
+
+      {/* Currency display placeholder */}
+      <div className="mt-8 bg-bg-secondary rounded-2xl px-6 py-3 shadow-md">
+        <span className="font-accent text-3xl text-currency-gold">$0</span>
+      </div>
+
+      {/* Navigation placeholder */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-bg-secondary border-t-2 border-brand-primary/20 p-4">
+        <div className="flex justify-around max-w-md mx-auto">
+          <button className="flex flex-col items-center text-text-secondary hover:text-brand-primary transition-colors">
+            <span className="text-2xl">🛒</span>
+            <span className="text-xs font-body">Shop</span>
+          </button>
+          <button className="flex flex-col items-center text-text-secondary hover:text-brand-primary transition-colors">
+            <span className="text-2xl">🏆</span>
+            <span className="text-xs font-body">Achievements</span>
+          </button>
+          <button className="flex flex-col items-center text-text-secondary hover:text-brand-primary transition-colors">
+            <span className="text-2xl">📊</span>
+            <span className="text-xs font-body">Stats</span>
+          </button>
+          <button className="flex flex-col items-center text-text-secondary hover:text-brand-primary transition-colors">
+            <span className="text-2xl">⚙️</span>
+            <span className="text-xs font-body">Settings</span>
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </nav>
+    </main>
   );
 }
