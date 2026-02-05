@@ -2,8 +2,8 @@
 
 ## Current Status
 **Last Updated:** 2026-02-04
-**Current Phase:** Phase 2 Complete ✓
-**Next Phase:** Phase 3 - Main Game Screen
+**Current Phase:** Phase 4 Complete ✓
+**Next Phase:** Phase 5 - Shop System
 
 ---
 
@@ -30,22 +30,27 @@
 
 **Completed:** 2026-02-04
 
-### Phase 3: Main Game Screen
-- [ ] 3.1 Create basic layout component
-- [ ] 3.2 Build currency display (animated counter)
-- [ ] 3.3 Add corgi component (placeholder image)
-- [ ] 3.4 Implement click handler with state update
-- [ ] 3.5 Add click feedback animation
-- [ ] 3.6 Add fart particle effect
-- [ ] 3.7 Implement coin/bill particle animation
+### Phase 3: Main Game Screen ✓ COMPLETE
+- [x] 3.1 Create basic layout component
+- [x] 3.2 Build currency display (animated counter)
+- [x] 3.3 Add corgi component (placeholder image)
+- [x] 3.4 Implement click handler with state update
+- [x] 3.5 Add click feedback animation
+- [x] 3.6 Add fart particle effect
+- [x] 3.7 Implement coin/bill particle animation
 
-### Phase 4: Audio System
-- [ ] 4.1 Set up Howler.js
-- [ ] 4.2 Add fart sound variations (3-5 sounds)
-- [ ] 4.3 Add coin collect sound
-- [ ] 4.4 Add purchase success sound
-- [ ] 4.5 Add background music (toggleable)
-- [ ] 4.6 Create sound settings context
+**Completed:** 2026-02-04
+
+### Phase 4: Audio System ✓ COMPLETE
+- [x] 4.1 Set up Howler.js
+- [x] 4.2 Add fart sound variations (3-5 sounds)
+- [x] 4.3 Add coin collect sound
+- [x] 4.4 Add purchase success sound
+- [x] 4.5 Add background music (toggleable)
+- [x] 4.6 Create sound settings context
+
+**Completed:** 2026-02-04
+**Note:** Sound files need to be added to `public/sounds/` - see README there for required files.
 
 ### Phase 5: Shop System
 - [ ] 5.1 Create shop page layout
@@ -117,6 +122,17 @@ npm run build
 - Storage Utils: `src/utils/storage.ts`
 - Auto-Save Hook: `src/hooks/useAutoSave.tsx`
 - Main page: `src/app/page.tsx`
+- Layout: `src/components/layout/GameLayout.tsx`
+- Navigation: `src/components/layout/Navigation.tsx`
+- Corgi: `src/components/game/Corgi.tsx`
+- Currency Display: `src/components/game/CurrencyDisplay.tsx`
+- Fart Cloud: `src/components/game/FartCloud.tsx`
+- Coin Particle: `src/components/game/CoinParticle.tsx`
+- Sound Context: `src/contexts/SoundContext.tsx`
+- Sound Hook: `src/hooks/useSounds.tsx`
+- Music Hook: `src/hooks/useBackgroundMusic.tsx`
+- Sound Controls: `src/components/ui/SoundControls.tsx`
+- Sound Files: `public/sounds/` (see README for required files)
 - Tailwind config: `tailwind.config.ts`
 - Design tokens: `docs/DESIGN_SYSTEM.md`
 
@@ -145,4 +161,28 @@ npm run build
 - Created storage utilities (`src/utils/storage.ts`) for manual save/load, backup, export/import
 - Created auto-save hook (`src/hooks/useAutoSave.tsx`) with 30s interval, visibility change save, beforeunload save
 - Added play time tracking (1s interval)
+- Build verified passing
+
+### 2026-02-04 - Phase 3: Main Game Screen
+- Created GameLayout component with Navigation and AutoSaveProvider
+- Built Navigation component with active state highlighting
+- Created CurrencyDisplay with animated spring counter (framer-motion)
+- Built Corgi component with click handling connected to Zustand store
+- Added squash/stretch click feedback animation
+- Implemented FartCloud particle effect with drift and fade
+- Implemented CoinParticle with arc trajectory animation
+- Currency display shows different icons based on progression level
+- All particles auto-cleanup after animation complete
+- Build verified passing
+
+### 2026-02-04 - Phase 4: Audio System
+- Created SoundContext (`src/contexts/SoundContext.tsx`) for sound settings (volume, mute)
+- Created useSounds hook (`src/hooks/useSounds.tsx`) with Howler.js for SFX
+- Created useBackgroundMusic hook (`src/hooks/useBackgroundMusic.tsx`) for music
+- Created SoundControls UI component (`src/components/ui/SoundControls.tsx`)
+- Integrated sound playback into Corgi click handler (fart + coin sounds)
+- Added SoundProvider to GameLayout
+- Sound settings persist to localStorage
+- Support for 3 fart sound variations (random selection)
+- Sound files documented in `public/sounds/README.md`
 - Build verified passing
