@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fredoka, Nunito, Bangers } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/components/Providers";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
@@ -41,7 +42,7 @@ export default function RootLayout({
       <body
         className={`${fredoka.variable} ${nunito.variable} ${bangers.variable} font-body antialiased`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

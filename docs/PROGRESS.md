@@ -2,8 +2,8 @@
 
 ## Current Status
 **Last Updated:** 2026-02-04
-**Current Phase:** Phase 4 Complete ✓
-**Next Phase:** Phase 5 - Shop System
+**Current Phase:** Phase 5 Complete ✓
+**Next Phase:** Phase 6 - Progression System
 
 ---
 
@@ -52,14 +52,16 @@
 **Completed:** 2026-02-04
 **Note:** Sound files need to be added to `public/sounds/` - see README there for required files.
 
-### Phase 5: Shop System
-- [ ] 5.1 Create shop page layout
-- [ ] 5.2 Build upgrade card component
-- [ ] 5.3 Implement upgrade purchase logic
-- [ ] 5.4 Add cost scaling calculations
-- [ ] 5.5 Build cosmetics tab
-- [ ] 5.6 Build corgis tab
-- [ ] 5.7 Add "affordable" visual indicators
+### Phase 5: Shop System ✓ COMPLETE
+- [x] 5.1 Create shop page layout
+- [x] 5.2 Build upgrade card component
+- [x] 5.3 Implement upgrade purchase logic
+- [x] 5.4 Add cost scaling calculations
+- [x] 5.5 Build cosmetics tab
+- [x] 5.6 Build corgis tab
+- [x] 5.7 Add "affordable" visual indicators
+
+**Completed:** 2026-02-04
 
 ### Phase 6: Progression System
 - [ ] 6.1 Implement level calculation
@@ -122,12 +124,20 @@ npm run build
 - Storage Utils: `src/utils/storage.ts`
 - Auto-Save Hook: `src/hooks/useAutoSave.tsx`
 - Main page: `src/app/page.tsx`
+- Shop page: `src/app/shop/page.tsx`
+- Root Providers: `src/components/Providers.tsx`
 - Layout: `src/components/layout/GameLayout.tsx`
 - Navigation: `src/components/layout/Navigation.tsx`
 - Corgi: `src/components/game/Corgi.tsx`
 - Currency Display: `src/components/game/CurrencyDisplay.tsx`
 - Fart Cloud: `src/components/game/FartCloud.tsx`
 - Coin Particle: `src/components/game/CoinParticle.tsx`
+- Upgrade Data: `src/data/upgrades.ts`
+- Cosmetic Data: `src/data/cosmetics.ts`
+- Corgi Data: `src/data/corgis.ts`
+- Upgrade Card: `src/components/shop/UpgradeCard.tsx`
+- Cosmetic Card: `src/components/shop/CosmeticCard.tsx`
+- Corgi Card: `src/components/shop/CorgiCard.tsx`
 - Sound Context: `src/contexts/SoundContext.tsx`
 - Sound Hook: `src/hooks/useSounds.tsx`
 - Music Hook: `src/hooks/useBackgroundMusic.tsx`
@@ -185,4 +195,18 @@ npm run build
 - Sound settings persist to localStorage
 - Support for 3 fart sound variations (random selection)
 - Sound files documented in `public/sounds/README.md`
+- Build verified passing
+
+### 2026-02-04 - Phase 5: Shop System
+- Created data definitions: `src/data/upgrades.ts`, `src/data/cosmetics.ts`, `src/data/corgis.ts`
+- 12 upgrades across 4 tiers with cost scaling (baseCost * costMultiplier^level)
+- 15 cosmetics across 3 slots (head, body, accessory)
+- 7 corgis with different unlock requirements (default, currency, prestige, secret)
+- Built UpgradeCard component with level progress, purchase logic, max level detection
+- Built CosmeticCard component with equip/unequip toggle, level lock display
+- Built CorgiCard component with unlock requirements, active selection
+- Shop page with animated tab navigation (upgrades, cosmetics, corgis)
+- "Affordable" visual indicators (glow-pulse animation, border highlight)
+- Moved SoundProvider to root layout via Providers component for app-wide access
+- Shop page now uses GameLayout for consistent navigation
 - Build verified passing
